@@ -1,0 +1,49 @@
+<div class="main-container">
+    <h5 class="heading-style">DAY OPENING</h5>
+    <div class="main-grid">
+        <form [formGroup]="dayOpenForm" (ngSubmit)="onSubmit()">
+
+            <div class="dvCalendar">
+                <mat-form-field appearance="outline">
+                    <input matInput [matDatepicker]="openingdate" [max]="tomorrow" placeholder="Choose a date"
+                        formControlName="openDate">
+                    <mat-datepicker-toggle matSuffix [for]="openingdate"></mat-datepicker-toggle>
+                    <mat-datepicker #openingdate></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div class="dvCheckbox">
+                <mat-checkbox class="example-margin" color="primary">Mark Holiday</mat-checkbox>
+            </div>
+            
+            <div class="dvDropdown">
+                <mat-form-field appearance="outline">
+                    <mat-label>Choose</mat-label>
+                    <mat-select>
+                        <mat-option value="option1">
+                            option 1
+                        </mat-option>
+                        <mat-option value="option2">
+                            option 2
+                        </mat-option>
+                        <mat-option value="option3">
+                            option 3
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="dvDescription">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Holiday Description</mat-label>
+                    <textarea matInput placeholder=""></textarea>
+                  </mat-form-field>
+            </div>
+
+            <div class="dvProceed">
+                <button mat-raised-button color="primary" type="submit">Proceed</button>
+            </div>
+        </form>
+
+    </div>
+</div>

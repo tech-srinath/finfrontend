@@ -1,0 +1,37 @@
+.main-container{
+    width: 70%;
+    height: 70%;
+    margin: auto;
+    padding: 25px;
+    text-align: center;
+    background: rgb(235, 234, 234);
+    border-radius: 8px;
+    .heading-style{
+        font-family: 'Segoe UI';
+    }
+    .main-grid{
+        display: grid;
+        grid-template-rows: auto auto auto auto auto;
+        width: auto;
+        grid-template-areas: "dvCalendar"
+                             "dvCheckbox"
+                             "dvDropdown"
+                             "dvDescription"
+                             "dvProceed";
+        .dvCalendar{
+            grid-area: dvCalendar;
+        }
+        .dvCheckbox{
+            grid-area: dvCheckbox;
+        }
+        .dvDropdown{
+            grid-area: dvDropdown;
+        }
+        .dvDescription{
+            grid-area: dvDescription;
+        }
+        .dvProceed{
+            grid-area: dvProceed;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+<div class="container">
+    <mat-card>
+        <h5 class="heading-style">LOGIN</h5>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="main-grid">
+                <div class="username">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input type="text" matInput autocomplete="off" formControlName="username">
+                        <mat-error *ngIf="loginForm.controls.username.invalid">Enter username</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="password">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input type="password" matInput autocomplete="off" formControlName="password">
+                        <mat-error *ngIf="loginForm.controls.password.invalid">Enter password</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <button mat-raised-button color="primary" type="submit">Login</button>
+        </form>
+    </mat-card>
+</div>

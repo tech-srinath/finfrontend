@@ -1,0 +1,25 @@
+.container{
+    width: 310px;
+    height: 70%;
+    margin: auto;
+    padding: 25px;
+    text-align: center;
+    padding-top: 100px;
+    .heading-style{
+        font-family: 'Segoe UI';
+    }
+
+    .main-grid{
+        display: grid;
+        grid-template-rows: auto auto;
+        width: auto;
+        grid-template-areas: "username"
+                             "password";
+        .username{
+            grid-area: username;
+        }
+        .password{
+            grid-area: password;
+        }
+    }
+}
