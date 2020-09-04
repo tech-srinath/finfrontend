@@ -1,6 +1,6 @@
 # finfrontend
 
-Folder structure
+#### Folder structure
 
 app -> 
   auth-module - all components in relation with authentication
