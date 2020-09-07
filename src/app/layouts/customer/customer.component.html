@@ -1,0 +1,359 @@
+<h2 class="heading-style">CUSTOMERS</h2>
+<div class="login-wrapper">
+
+    <mat-card class="box">
+
+        <form>
+
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            General data
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+
+                    <div class="table">
+                        <div>
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>Branch</mat-label>
+                                <mat-select type="number">
+                                    <mat-option value="1">Branch1</mat-option>
+                                    <mat-option value="2">Branch2</mat-option>
+                                    <mat-option value="3">Branch3</mat-option>
+                                    <mat-option value="4">Branch4</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <input matInput placeholder="Customer ID" name="Customerid" type="number">
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="input_txt">
+                                <mat-label>Admitted Date</mat-label>
+                                <input matInput [matDatepicker]="picker" name="AdmittedOn" id="ad-date">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <div>
+                            <mat-form-field class="input_txt">
+                                <input matInput placeholder="Name" name="Name" type="text" id="cust-name">
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt">
+                                <!-- <mat-label style="padding-right:20px;">Sec.Name</mat-label> -->
+                                <mat-select name="Relation" id="relation">
+                                    <mat-option value="1">Choose</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt">
+                                <input matInput placeholder="Second Name" id="second-name">
+                            </mat-form-field>
+                        </div>
+
+
+
+                        <div>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>DOB</mat-label>
+                                <input matInput [matDatepicker]="DOB" name="Dob" id="cust-dob">
+                                <mat-datepicker-toggle matSuffix [for]="DOB"></mat-datepicker-toggle>
+                                <mat-datepicker #DOB></mat-datepicker>
+                            </mat-form-field>
+
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <input matInput placeholder="Age" id="cust-age">
+                            </mat-form-field>
+
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>Gender</mat-label>
+                                <mat-select>
+                                    <mat-option value="Male">Male</mat-option>
+                                    <mat-option value="Female">Female</mat-option>
+                                    <mat-option value="Other">Other</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>Religion</mat-label>
+                                <mat-select>
+                                    <mat-option value="Hindu">Hindu</mat-option>
+                                    <mat-option value="Muslim">Muslim</mat-option>
+                                    <mat-option value="Christian">Christian</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>Caste</mat-label>
+                                <mat-select>
+                                    <mat-option value="Cast1">Cast1</mat-option>
+                                    <mat-option value="cast2">cast2</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </mat-expansion-panel>
+
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Present Address
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="table">
+
+                        <div>
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <input matInput placeholder="House Name" type="text">
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>Place</mat-label>
+                                <mat-select>
+                                    <mat-option value="1">Choose</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>Village</mat-label>
+                                <mat-select>
+                                    <mat-option value="1">Choose</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div>
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>Post and Pin</mat-label>
+                                <mat-select>
+                                    <mat-option value="1">Choose</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>District</mat-label>
+                                <mat-select name="District">
+                                    <mat-option value="1">Choose</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <input matInput placeholder="Ward" type="text">
+                            </mat-form-field>
+
+                        </div>
+                        <div>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <input matInput placeholder="H.No" type="text">
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <input matInput placeholder="Road">
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <input matInput placeholder="Landmark">
+                            </mat-form-field>
+
+                        </div>
+
+
+                    </div>
+                </mat-expansion-panel>
+
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Permanent Address
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="table">
+
+                        <div>
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <input matInput placeholder="House Name" type="text">
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>Place</mat-label>
+                                <mat-select>
+                                    <mat-option value="1">Choose</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>Village</mat-label>
+                                <mat-select>
+                                    <mat-option value="1">Choose</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div>
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>Post and Pin</mat-label>
+                                <mat-select>
+                                    <mat-option value="1">Choose</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>District</mat-label>
+                                <mat-select name="District">
+                                    <mat-option value="1">Choose</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <input matInput placeholder="Ward" type="text">
+                            </mat-form-field>
+
+                        </div>
+                        <div>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <input matInput placeholder="H.No" type="text">
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <input matInput placeholder="Road">
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <input matInput placeholder="Landmark">
+                            </mat-form-field>
+
+                        </div>
+
+
+                    </div>
+                </mat-expansion-panel>
+
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Contact Details
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class='table_cell'>
+                        <mat-form-field class="input_txt" appearance="outline">
+                            <input matInput placeholder="Phone number">
+                        </mat-form-field>
+                        <mat-form-field class="input_txt" appearance="outline">
+                            <input matInput placeholder="Mobile1">
+                        </mat-form-field>
+                        <mat-form-field class="input_txt" appearance="outline">
+                            <input matInput placeholder="Mobile2">
+                        </mat-form-field>
+                        <mat-form-field class="input_txt" appearance="outline">
+                            <input matInput placeholder="Email">
+                        </mat-form-field>
+                    </div>
+                </mat-expansion-panel>
+
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Panchayath/Muncipality/Corpration
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="table" id="results">
+
+                        <div class='table_row'>
+
+
+                            <div class='table_cell'>
+                                <mat-form-field class="input_txt" appearance="outline">
+                                    <mat-label>Type</mat-label>
+                                    <mat-select>
+                                        <mat-option value="Panchayath">Panchayath</mat-option>
+                                        <mat-option value="Municipality">Municipality</mat-option>
+                                        <mat-option value="Corporation">Corporation</mat-option>
+
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field class="input_txt" appearance="outline">
+                                    <mat-label>Name</mat-label>
+                                    <mat-select>
+                                        <mat-option value="1">Choose</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Id Proofs
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="table" id="results">
+
+                        <div class='table_row'>
+
+
+                            <div class='table_cell'>
+
+                                <mat-form-field class="input_txt" appearance="outline">
+                                    <mat-label>Type</mat-label>
+                                    <mat-select id="id_type">
+                                        <mat-option value="1">Choose</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                                <mat-form-field class="input_txt" appearance="outline">
+                                    <input matInput placeholder="No:">
+                                </mat-form-field>
+
+                                <mat-form-field class="input_txt" appearance="outline">
+                                    <input matInput placeholder="Remarks :">
+                                </mat-form-field>
+
+                                <div>
+                                    <!-- <mat-label>Upload Image</mat-label> -->
+                                    <input type="file">
+                                    <button type="button">ADD</button>
+                                </div>
+                                <div>
+                                    <table id="table_id_proof">
+                                        <tr>
+                                            <th>Id Type</th>
+                                            <th>No:</th>
+                                            <th>Remarks</th>
+                                            <th>Image</th>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+
+
+            </mat-accordion>
+
+            <button mat-raised-button color="primary" type="submit" style="margin-top: 15px;">Save</button>
+
+        </form>
+    </mat-card>
+
+</div>

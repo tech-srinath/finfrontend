@@ -20,6 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const MaterialComponents = [
   CommonModule,
@@ -41,7 +42,8 @@ const MaterialComponents = [
   MatPaginatorModule,
   MatCardModule,
   MatNativeDateModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatExpansionModule
 ];
 
 @NgModule({
