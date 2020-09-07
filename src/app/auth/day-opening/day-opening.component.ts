@@ -13,6 +13,8 @@ export class DayOpeningComponent implements OnInit {
 
   dayOpenForm: FormGroup;
 
+  disabled: boolean = false;
+
   constructor(private _formBuilder: FormBuilder) {
     this.tomorrow.setDate(this.tomorrow.getDate());
 
@@ -25,5 +27,8 @@ export class DayOpeningComponent implements OnInit {
   }
   onSubmit(){
     
+  }
+  showDiv(){
+    this.disabled = !this.disabled;
   }
 }

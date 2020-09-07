@@ -8,7 +8,8 @@ import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { DayOpeningComponent } from './day-opening/day-opening.component';
 import { MaterialModule } from '../material/material.module';
-
+import {AuthService} from './auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AuthComponent, LoginComponent, DayOpeningComponent],
@@ -17,7 +18,11 @@ import { MaterialModule } from '../material/material.module';
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
+  ],
+  providers:[
+    AuthService
   ]
 })
 export class AuthModule { }
