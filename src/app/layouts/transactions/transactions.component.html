@@ -1,0 +1,10 @@
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened>
+        <app-trans-sidebar></app-trans-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <button mat-button (click)="sidenav.toggle()">Search</button>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

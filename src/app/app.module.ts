@@ -9,10 +9,12 @@ import { SharedModule } from './shared/shared.module';
 /** Material modules */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { from } from 'rxjs';
+import { PageNotFoundComponent } from './_security/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

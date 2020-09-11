@@ -1,0 +1,85 @@
+<div class="container">
+    <div class="dvSideHeader">
+        <p><strong>Transactions</strong></p>
+    </div>
+    <div class="dvSideContent">
+        <div class="dvBasicForm">
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-select>
+                        <mat-option>None</mat-option>
+                    </mat-select>
+                    <mat-label>Head of Account</mat-label>
+                </mat-form-field>
+            </div>
+            <div>
+                <form>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Account No.</mat-label>
+                        <input type="text" matInput placeholder="Ex. XXXX-XXXX-XXXX" [formControl]="myControl"
+                            [matAutocomplete]="auto">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <button type="submit" mat-button matSuffix mat-icon-button>
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </form>
+            </div>
+        </div>
+        <div class="dvDetails">
+            <div class="dvDetailsHeader">
+                <p><strong>Customer Details</strong></p>
+            </div>
+            <div class="dvPersonal">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title style="font-size: unset;">
+                            <p><strong>John Doe</strong></p>
+                        </mat-card-title>
+                        <mat-card-subtitle style="font-size: unset;">
+                            <p>(+91) - 91881 79036</p>
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p><b>Account No</b><br>XXXX-XXXX-XXXX</p>
+                        <div [style.display]="viewDetails? 'block': 'none'">
+                            <p><b>Branch Code</b><br>BR000197 - Lorem ipsum</p>
+                            <p style="text-align: justify;"><b>Address</b><br>Lorem ipsum dolor sit amet, consectetur
+                                adipiscing
+                                elit, sed do
+                                eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua.</p>
+                        </div>
+                        <p>{{toggleViewText + ' Details'}}
+                            <button (click)="viewTogglr()" mat-button matSuffix mat-icon-button>
+                                <mat-icon>{{viewDetails?'keyboard_arrow_up':'keyboard_arrow_down'}}</mat-icon>
+                            </button>
+                        </p>
+                    </mat-card-content>
+                    <mat-divider></mat-divider>
+                    <mat-card-actions>
+                        <button mat-button color="primary" autofocus (click)="search()">OK</button>
+                        <button mat-button color="accent">CANCEL</button>
+                    </mat-card-actions>
+                </mat-card>
+                <div class="dvMore" style="margin: 5px 0px;">
+                    <mat-accordion>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <strong>Advanced Options</strong>
+                            </mat-expansion-panel-header>
+                            <ng-template matExpansionPanelContent>
+                                <button class="btnAdvancedOptions" mat-button (click)="openLedger()">Ledger</button>
+                            </ng-template>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
