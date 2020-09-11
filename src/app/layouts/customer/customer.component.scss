@@ -1,69 +1,92 @@
-
 .login-wrapper {
-    height: 100%;
-    padding: 10px 25px 25px 25px;
+  height: 100%;
+  padding: 10px 25px 25px 25px;
 }
-.heading-style{
-  font-family: 'Segoe UI';
+.heading-style {
+  font-family: "Segoe UI";
   text-align: center;
   text-align-last: center;
 }
 .box {
-    position: relative;
-    top: 0;
-    opacity: 1;
-    // padding: 60px 50px 40px 50px;
-    // width: 100%;
-    background: #fff;
-    border-radius: 10px;
-    transform: scale(1);
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    z-index: 5;
+  position: relative;
+  top: 0;
+  opacity: 1;
+  // padding: 60px 50px 40px 50px;
+  // width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  z-index: 5;
 }
 
 .box.back {
-    transform: scale(.95);
-    -webkit-transform: scale(.95);
-    -ms-transform: scale(.95);
-    top: -20px;
-    opacity: .8;
-    z-index: -1;
+  transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  top: -20px;
+  opacity: 0.8;
+  z-index: -1;
 }
 
 .box:before {
-    content: "";
-    width: 100%;
-    height: 30px;
-    border-radius: 10px;
-    position: absolute;
-    top: -10px;
-    background: rgba(255, 255, 255, .6);
-    left: 0;
-    transform: scale(.95);
-    -webkit-transform: scale(.95);
-    -ms-transform: scale(.95);
-    z-index: -1;
+  content: "";
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  position: absolute;
+  top: -10px;
+  background: rgba(255, 255, 255, 0.6);
+  left: 0;
+  transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  z-index: -1;
 }
 
-.table{
-  width:100%;
+.table {
+  width: 100%;
 }
 
-.input_txt{
-  padding-right:20px;
+.input_txt {
+  padding-right: 20px;
   width: 30%;
 }
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
 
-  table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 80%;
-    border: 1px black;
-    background-color: white;
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  border: 1px black;
+  background-color: white;
+}
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  background: #3f51b5;
+  color: white;
+}
+.btn-grid{
+  display: grid;
+  grid-template-columns: repeat(2,10%);
+  grid-template-areas: "btn-select btn-add";
+  .btn-select{
+    grid-area: btn-select;
   }
+  .btn-add{
+    grid-area: btn-add;
+  }
+}

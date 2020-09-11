@@ -3,54 +3,67 @@
 
     <mat-card class="box">
 
-        <form>
+        <!-- <form [formGroup]="custForm" (ngSubmit)="onSubmit()"> -->
 
-            <mat-accordion>
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            General data
-                        </mat-panel-title>
-
-                    </mat-expansion-panel-header>
-
-                    <div class="table">
+        <mat-tab-group [(selectedIndex)]="TABINDEX" (selectedIndexChange)="tabChange($event)" style="height: 350px;">
+            <mat-tab label="General data">
+                <form [formGroup]="custFormGeneral">
+                    <ng-template mat-tab-label>
+                        General data&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-icon class="example-tab-icon" style="color: green;" *ngIf="custFormGeneral.valid">check
+                        </mat-icon>
+                        <mat-icon class="example-tab-icon" style="color: red;" *ngIf="custFormGeneral.invalid">
+                            error_outline</mat-icon>
+                    </ng-template>
+                    <div class="table" style="margin: auto; padding-top: 20px;">
                         <div>
-                            <mat-form-field class="input_txt" appearance="outline">
+                            <mat-form-field class="input_txt" appearance="outline" style="width: 22%;">
                                 <mat-label>Branch</mat-label>
-                                <mat-select type="number">
+                                <mat-select type="number" formControlName="branch">
                                     <mat-option value="1">Branch1</mat-option>
                                     <mat-option value="2">Branch2</mat-option>
                                     <mat-option value="3">Branch3</mat-option>
                                     <mat-option value="4">Branch4</mat-option>
                                 </mat-select>
-                            </mat-form-field>
-                            <mat-form-field class="input_txt" appearance="outline">
-                                <input matInput placeholder="Customer ID" name="Customerid" type="number">
+                                <mat-error *ngIf="custFormGeneral.controls.branch.invalid">Enter branch</mat-error>
                             </mat-form-field>
 
-                            <mat-form-field appearance="outline" class="input_txt">
+                            <mat-form-field class="input_txt" appearance="outline" style="width: 22%;">
+                                <input matInput placeholder="Customer ID" type="number" formControlName="custId"
+                                    readonly>
+                                <!-- <mat-error *ngIf="custFormGeneral.controls.custId.invalid">Enter customerId</mat-error> -->
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="input_txt" style="width: 22%;">
                                 <mat-label>Admitted Date</mat-label>
-                                <input matInput [matDatepicker]="picker" name="AdmittedOn" id="ad-date">
+                                <input matInput [matDatepicker]="picker" formControlName="adDate"
+                                    placeholder="mm/dd/yyyy">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
+                                <mat-error *ngIf="custFormGeneral.controls.adDate.invalid">Select Date</mat-error>
                             </mat-form-field>
                         </div>
 
                         <div>
                             <mat-form-field class="input_txt">
-                                <input matInput placeholder="Name" name="Name" type="text" id="cust-name">
+                                <mat-label>Name</mat-label>
+                                <input matInput formControlName="custName" type="text">
+                                <mat-error *ngIf="custFormGeneral.controls.custName.invalid">Enter Name</mat-error>
                             </mat-form-field>
 
-                            <mat-form-field class="input_txt">
+                            <mat-form-field class="input_txt" style="width: 6%;">
                                 <!-- <mat-label style="padding-right:20px;">Sec.Name</mat-label> -->
-                                <mat-select name="Relation" id="relation">
+                                <mat-select formControlName="custRelation">
                                     <mat-option value="1">Choose</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="custFormGeneral.controls.custRelation.invalid">Select Relation
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="input_txt">
-                                <input matInput placeholder="Second Name" id="second-name">
+                                <input matInput placeholder="Second Name" formControlName="custSecName">
+                                <mat-error *ngIf="custFormGeneral.controls.custSecName.invalid">Enter Second Name
+                                </mat-error>
                             </mat-form-field>
                         </div>
 
@@ -58,301 +71,375 @@
 
                         <div>
 
-                            <mat-form-field class="input_txt" appearance="outline">
+                            <mat-form-field class="input_txt" appearance="outline" style="width: 22%;">
                                 <mat-label>DOB</mat-label>
-                                <input matInput [matDatepicker]="DOB" name="Dob" id="cust-dob">
+                                <input matInput [matDatepicker]="DOB" [(ngModel)]="Dob" formControlName="custDob"
+                                    [max]="tomorrow" (dateChange)="calculateAge()" value="{{dob}}"
+                                    placeholder="mm/dd/yyyy">
                                 <mat-datepicker-toggle matSuffix [for]="DOB"></mat-datepicker-toggle>
                                 <mat-datepicker #DOB></mat-datepicker>
+                                <mat-error *ngIf="custFormGeneral.controls.custDob.invalid">Select DOB</mat-error>
                             </mat-form-field>
 
 
-                            <mat-form-field class="input_txt" appearance="outline">
-                                <input matInput placeholder="Age" id="cust-age">
+                            <mat-form-field class="input_txt" appearance="outline" style="width: 22%;">
+                                <input matInput placeholder="Age" value="{{age}}">
                             </mat-form-field>
 
 
-                            <mat-form-field class="input_txt" appearance="outline">
+                            <mat-form-field class="input_txt" appearance="outline" style="width: 22%;">
                                 <mat-label>Gender</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="custGender">
                                     <mat-option value="Male">Male</mat-option>
                                     <mat-option value="Female">Female</mat-option>
                                     <mat-option value="Other">Other</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="custFormGeneral.controls.custGender.invalid">Select Gender</mat-error>
                             </mat-form-field>
-
-
-                            <mat-form-field class="input_txt" appearance="outline">
+                        </div>
+                        <div>
+                            <mat-form-field class="input_txt" appearance="outline" style="width: 22%;">
                                 <mat-label>Religion</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="custReligion">
                                     <mat-option value="Hindu">Hindu</mat-option>
                                     <mat-option value="Muslim">Muslim</mat-option>
                                     <mat-option value="Christian">Christian</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="custFormGeneral.controls.custReligion.invalid">Select Religion
+                                </mat-error>
                             </mat-form-field>
 
-                            <mat-form-field class="input_txt" appearance="outline">
+                            <mat-form-field class="input_txt" appearance="outline" style="width: 22%;">
                                 <mat-label>Caste</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="custCaste">
                                     <mat-option value="Cast1">Cast1</mat-option>
                                     <mat-option value="cast2">cast2</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="custFormGeneral.controls.custCaste.invalid">Select Caste</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="input_txt" appearance="outline" style="width: 22%;">
+                                <input matInput placeholder="PAN No" type="number" formControlName="custPanNo">
                             </mat-form-field>
                         </div>
                     </div>
+                </form>
+            </mat-tab>
 
-                </mat-expansion-panel>
-
-
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Present Address
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="table">
+            <mat-tab label="Present Address">
+                <form [formGroup]="presentAddressForm">
+                    <ng-template mat-tab-label>
+                        Present Address&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-icon class="example-tab-icon" style="color: green;" *ngIf="presentAddressForm.valid">check
+                        </mat-icon>
+                        <mat-icon class="example-tab-icon" style="color: red;" *ngIf="presentAddressForm.invalid">
+                            error_outline</mat-icon>
+                    </ng-template>
+                    <div class="table" style="margin: auto; padding-top: 20px;">
 
                         <div>
                             <mat-form-field class="input_txt" appearance="outline">
-                                <input matInput placeholder="House Name" type="text">
+                                <input matInput placeholder="House Name" type="text" formControlName="preHouseName">
+                                <mat-error *ngIf="presentAddressForm.controls.preHouseName.invalid">Enter House Name
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="input_txt" appearance="outline">
                                 <mat-label>Place</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="prePlace">
                                     <mat-option value="1">Choose</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="presentAddressForm.controls.prePlace.invalid">Choose Place</mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="input_txt" appearance="outline">
                                 <mat-label>Village</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="preVillage">
                                     <mat-option value="1">Choose</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="presentAddressForm.controls.preVillage.invalid">Choose Village
+                                </mat-error>
                             </mat-form-field>
                         </div>
 
                         <div>
                             <mat-form-field class="input_txt" appearance="outline">
                                 <mat-label>Post and Pin</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="prePost">
                                     <mat-option value="1">Choose</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="presentAddressForm.controls.prePost.invalid">Choose Post</mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="input_txt" appearance="outline">
                                 <mat-label>District</mat-label>
-                                <mat-select name="District">
+                                <mat-select formControlName="preDistrict">
                                     <mat-option value="1">Choose</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="presentAddressForm.controls.preDistrict.invalid">Choose District
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="input_txt" appearance="outline">
-                                <input matInput placeholder="Ward" type="text">
+                                <input matInput placeholder="Ward" type="text" formControlName="preWard">
+                                <mat-error *ngIf="presentAddressForm.controls.preWard.invalid">Enter Ward</mat-error>
                             </mat-form-field>
 
                         </div>
                         <div>
 
                             <mat-form-field class="input_txt" appearance="outline">
-                                <input matInput placeholder="H.No" type="text">
+                                <input matInput placeholder="H.No" type="text" formControlName="preHno">
+                                <mat-error *ngIf="presentAddressForm.controls.preHno.invalid">Enter House No</mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="input_txt" appearance="outline">
-                                <input matInput placeholder="Road">
+                                <input matInput placeholder="Road" formControlName="preRoad">
+                                <mat-error *ngIf="presentAddressForm.controls.preRoad.invalid">Enter Road</mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="input_txt" appearance="outline">
-                                <input matInput placeholder="Landmark">
+                                <input matInput placeholder="Landmark" formControlName="preLandmark">
+                                <mat-error *ngIf="presentAddressForm.controls.preLandmark.invalid">Enter Landmark
+                                </mat-error>
                             </mat-form-field>
 
                         </div>
 
 
                     </div>
-                </mat-expansion-panel>
+                </form>
+            </mat-tab>
 
-
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Permanent Address
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="table">
+            <mat-tab label="Permanent Address">
+                <form [formGroup]="permanentAddressForm">
+                    <ng-template mat-tab-label>
+                        Permanent Address&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-icon class="example-tab-icon" style="color: green;" *ngIf="permanentAddressForm.valid">
+                            check</mat-icon>
+                        <mat-icon class="example-tab-icon" style="color: red;" *ngIf="permanentAddressForm.invalid">
+                            error_outline</mat-icon>
+                    </ng-template>
+                    <div class="table" style="margin: auto; padding-top: 20px;">
 
                         <div>
                             <mat-form-field class="input_txt" appearance="outline">
-                                <input matInput placeholder="House Name" type="text">
+                                <input matInput placeholder="House Name" type="text" formControlName="perHouseName">
+                                <mat-error *ngIf="permanentAddressForm.controls.perHouseName.invalid">Enter House Name
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="input_txt" appearance="outline">
                                 <mat-label>Place</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="perPlace">
                                     <mat-option value="1">Choose</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="permanentAddressForm.controls.perPlace.invalid">Choose Place
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="input_txt" appearance="outline">
                                 <mat-label>Village</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="perVillage">
                                     <mat-option value="1">Choose</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="permanentAddressForm.controls.perVillage.invalid">Choose Village
+                                </mat-error>
                             </mat-form-field>
                         </div>
 
                         <div>
                             <mat-form-field class="input_txt" appearance="outline">
                                 <mat-label>Post and Pin</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="perPost">
                                     <mat-option value="1">Choose</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="permanentAddressForm.controls.perPost.invalid">Choose Post</mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="input_txt" appearance="outline">
                                 <mat-label>District</mat-label>
-                                <mat-select name="District">
+                                <mat-select formControlName="perDistrict">
                                     <mat-option value="1">Choose</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="permanentAddressForm.controls.perDistrict.invalid">Choose District
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="input_txt" appearance="outline">
-                                <input matInput placeholder="Ward" type="text">
+                                <input matInput placeholder="Ward" type="text" formControlName="perWard">
+                                <mat-error *ngIf="permanentAddressForm.controls.perWard.invalid">Enter Ward</mat-error>
                             </mat-form-field>
 
                         </div>
                         <div>
 
                             <mat-form-field class="input_txt" appearance="outline">
-                                <input matInput placeholder="H.No" type="text">
+                                <input matInput placeholder="H.No" type="text" formControlName="perHno">
+                                <mat-error *ngIf="permanentAddressForm.controls.perHno.invalid">Enter House No
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="input_txt" appearance="outline">
-                                <input matInput placeholder="Road">
+                                <input matInput placeholder="Road" formControlName="perRoad">
+                                <mat-error *ngIf="permanentAddressForm.controls.perRoad.invalid">Enter Road</mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="input_txt" appearance="outline">
-                                <input matInput placeholder="Landmark">
+                                <input matInput placeholder="Landmark" formControlName="perLandmark">
+                                <mat-error *ngIf="permanentAddressForm.controls.perLandmark.invalid">Enter Landmark
+                                </mat-error>
                             </mat-form-field>
 
                         </div>
 
 
                     </div>
-                </mat-expansion-panel>
+                </form>
+            </mat-tab>
 
+            <mat-tab label="Contact Details">
+                <form [formGroup]="contactForm">
 
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Contact Details
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
+                    <ng-template mat-tab-label>
+                        Contact Details&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-icon class="example-tab-icon" style="color: green;" *ngIf="contactForm.valid">check
+                        </mat-icon>
+                        <mat-icon class="example-tab-icon" style="color: red;" *ngIf="contactForm.invalid">error_outline
+                        </mat-icon>
+                    </ng-template>
 
-                    <div class='table_cell'>
+                    <div class='table' style="margin: auto; padding-top: 20px;">
+
                         <mat-form-field class="input_txt" appearance="outline">
-                            <input matInput placeholder="Phone number">
+                            <input matInput placeholder="Phone number" formControlName="custPhoneNo">
+                            <mat-error *ngIf="contactForm.controls.custPhoneNo.invalid">Enter Phone No</mat-error>
                         </mat-form-field>
+
                         <mat-form-field class="input_txt" appearance="outline">
-                            <input matInput placeholder="Mobile1">
+                            <input matInput placeholder="Mobile1" formControlName="custMobileNo1">
+                            <mat-error *ngIf="contactForm.controls.custMobileNo1.invalid">Enter Mobile No</mat-error>
                         </mat-form-field>
+
                         <mat-form-field class="input_txt" appearance="outline">
-                            <input matInput placeholder="Mobile2">
+                            <input matInput placeholder="Mobile2" formControlName="custMobileNo2">
+                            <mat-error *ngIf="contactForm.controls.custMobileNo2.invalid">Enter Mobile No</mat-error>
                         </mat-form-field>
+
                         <mat-form-field class="input_txt" appearance="outline">
-                            <input matInput placeholder="Email">
+                            <input matInput placeholder="Email" formControlName="custEmail">
+                            <mat-error *ngIf="contactForm.controls.custEmail.invalid">Enter Email</mat-error>
                         </mat-form-field>
+
                     </div>
-                </mat-expansion-panel>
+                </form>
+            </mat-tab>
 
+            <mat-tab label="Panchayath/Muncipality/Corpration">
+                <form [formGroup]="pmcForm">
 
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Panchayath/Muncipality/Corpration
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="table" id="results">
+                    <ng-template mat-tab-label>
+                        Panchayath/Muncipality/Corpration&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-icon class="example-tab-icon" style="color: green;" *ngIf="pmcForm.valid">check</mat-icon>
+                        <mat-icon class="example-tab-icon" style="color: red;" *ngIf="pmcForm.invalid">error_outline
+                        </mat-icon>
+                    </ng-template>
 
-                        <div class='table_row'>
+                    <div class='table' style="margin: auto; padding-top: 20px;">
 
+                        <div>
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>Type</mat-label>
+                                <mat-select formControlName="pmcType">
+                                    <mat-option value="Panchayath">Panchayath</mat-option>
+                                    <mat-option value="Municipality">Municipality</mat-option>
+                                    <mat-option value="Corporation">Corporation</mat-option>
+                                </mat-select>
 
-                            <div class='table_cell'>
-                                <mat-form-field class="input_txt" appearance="outline">
-                                    <mat-label>Type</mat-label>
-                                    <mat-select>
-                                        <mat-option value="Panchayath">Panchayath</mat-option>
-                                        <mat-option value="Municipality">Municipality</mat-option>
-                                        <mat-option value="Corporation">Corporation</mat-option>
+                                <mat-error *ngIf="pmcForm.controls.pmcType.invalid">Choose Type</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>Name</mat-label>
+                                <mat-select formControlName="pmcName">
+                                    <mat-option value="1">Choose</mat-option>
+                                </mat-select>
 
-                                    </mat-select>
-                                </mat-form-field>
-                                <mat-form-field class="input_txt" appearance="outline">
-                                    <mat-label>Name</mat-label>
-                                    <mat-select>
-                                        <mat-option value="1">Choose</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
+                                <mat-error *ngIf="pmcForm.controls.pmcName.invalid">Choose</mat-error>
+                            </mat-form-field>
 
-                            </div>
                         </div>
                     </div>
-                </mat-expansion-panel>
 
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Id Proofs
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="table" id="results">
+                </form>
+            </mat-tab>
 
-                        <div class='table_row'>
+            <mat-tab label="Id Proofs">
+                <form [formGroup]="idProofForm">
+                    <div class="table" style="margin: auto; padding-top: 20px;">
 
-
-                            <div class='table_cell'>
-
-                                <mat-form-field class="input_txt" appearance="outline">
-                                    <mat-label>Type</mat-label>
-                                    <mat-select id="id_type">
-                                        <mat-option value="1">Choose</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-
-                                <mat-form-field class="input_txt" appearance="outline">
-                                    <input matInput placeholder="No:">
-                                </mat-form-field>
-
-                                <mat-form-field class="input_txt" appearance="outline">
-                                    <input matInput placeholder="Remarks :">
-                                </mat-form-field>
-
-                                <div>
-                                    <!-- <mat-label>Upload Image</mat-label> -->
-                                    <input type="file">
-                                    <button type="button">ADD</button>
+                        <div>
+                        
+    
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <mat-label>Type</mat-label>
+                                <mat-select id="id_type" formControlName="idType">
+                                    <mat-option value="1">Choose</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+    
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <input matInput placeholder="No:" formControlName="idNo">
+                            </mat-form-field>
+    
+                            <mat-form-field class="input_txt" appearance="outline">
+                                <input matInput placeholder="Remarks :" formControlName="idRemarks">
+                            </mat-form-field>
+    
+                            <div class="btn-grid">
+                                <!-- <mat-label>Upload Image</mat-label> -->
+                                <div class="btn-select">
+                                    <input type="file" id="fileupload">
+                                    <label for="fileupload" class="custom-file-upload">
+                                        <mat-icon style="font-size: large; vertical-align: middle;">attach_file
+                                        </mat-icon>Select
+                                    </label>
                                 </div>
-                                <div>
-                                    <table id="table_id_proof">
-                                        <tr>
-                                            <th>Id Type</th>
-                                            <th>No:</th>
-                                            <th>Remarks</th>
-                                            <th>Image</th>
-                                        </tr>
-                                    </table>
+    
+                                <div class="btn-add">
+                                    <button mat-raised-button color="primary" type="button" (click)="addToTable()">ADD</button>
                                 </div>
-
+    
                             </div>
+                            <div>
+                                <table id="table_id_proof">
+                                    <tr>
+                                        <th>Id Type</th>
+                                        <th>No:</th>
+                                        <th>Remarks</th>
+                                        <th>Image</th>
+                                    </tr>
+                                </table>
+                            </div>
+    
                         </div>
+                        
                     </div>
-                </mat-expansion-panel>
+                </form>
+            </mat-tab>
+
+        </mat-tab-group>
 
 
-            </mat-accordion>
+        <button mat-raised-button color="primary" type="button" style="margin-top: 15px; margin-right: 50px;"
+            (click)="onSubmit($event)">Save</button>
 
-            <button mat-raised-button color="primary" type="submit" style="margin-top: 15px;">Save</button>
+        <button mat-raised-button color="primary" type="button" style="margin-top: 15px; margin-right: 50px;"
+            (click)="nextTab()" *ngIf=" TABINDEX < 5 ">Next</button>
 
-        </form>
+        <button mat-stroked-button color="primary" type="button" style="margin-top: 15px;" (click)="prevTab()"
+            *ngIf=" TABINDEX > 0 ">Previous</button>
+
+        <!-- </form> -->
     </mat-card>
 
 </div>
