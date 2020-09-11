@@ -21,6 +21,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
 
 const MaterialComponents = [
   CommonModule,
@@ -43,7 +44,8 @@ const MaterialComponents = [
   MatCardModule,
   MatNativeDateModule,
   MatCheckboxModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatAutocompleteModule
 ];
 
 @NgModule({

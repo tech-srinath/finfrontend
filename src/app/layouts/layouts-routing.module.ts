@@ -7,7 +7,8 @@ const routes: Routes = [
   {
     path: '', component: LayoutsComponent,
     children: [
-      { path: 'customer', component: CustomerComponent }
+      { path: 'customer', component: CustomerComponent },
+      { path: 'transactions', loadChildren: () => import('./transactions/transactions.module').then(m => m.TransactionsModule) },
     ]
   }
 ];

@@ -9,13 +9,17 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 /** Material Imports */
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { LayoutModule } from '@angular/cdk/layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, SidebarComponent],
   imports: [
     CommonModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    LayoutModule,
+    ReactiveFormsModule
   ],
   exports: [HeaderComponent, FooterComponent, SidebarComponent]
 })
