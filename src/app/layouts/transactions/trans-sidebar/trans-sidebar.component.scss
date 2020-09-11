@@ -1,0 +1,29 @@
+.container {
+    padding: 20px;
+
+    .dvSideHeader {
+        position: sticky;
+        top: 0;
+        background: white;
+        padding: 10px 0;
+        z-index: 1;
+        p {
+            margin: 0;
+        }
+    }
+    .example-header-image {
+        background-image: url("../../../../assets/temp/man.png");
+        background-size: cover;
+    }
+    .mat-form-field{
+        width: 100%;
+    }
+    .mat-card-header-text {
+        margin: 0 !important;
+    }
+
+    .btnAdvnacedOptions {
+        width: 100% !important;
+        text-align: left !important;
+    }
+}
